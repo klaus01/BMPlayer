@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
+//import NVActivityIndicatorView
 
 
 @objc public protocol BMPlayerControlViewDelegate: class {
@@ -105,7 +105,7 @@ open class BMPlayerControlView: UIView {
     open var subtileAttribute: [NSAttributedStringKey : Any]?
     
     /// Activty Indector for loading
-    open var loadingIndicator  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
+//    open var loadingIndicator  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
     
     open var seekToView       = UIView()
     open var seekToViewImage  = UIImageView()
@@ -245,9 +245,9 @@ open class BMPlayerControlView: UIView {
                 if self.isFullscreen { self.chooseDefinitionView.alpha = 1.0 }
             } else {
                 self.replayButton.isHidden = true
-                self.chooseDefinitionView.snp.updateConstraints { (make) in
-                    make.height.equalTo(35)
-                }
+//                self.chooseDefinitionView.snp.updateConstraints { (make) in
+//                    make.height.equalTo(35)
+//                }
                 self.chooseDefinitionView.alpha = 0.0
             }
             self.layoutIfNeeded()
@@ -294,12 +294,12 @@ open class BMPlayerControlView: UIView {
     }
     
     open func showLoader() {
-        loadingIndicator.isHidden = false
-        loadingIndicator.startAnimating()
+//        loadingIndicator.isHidden = false
+//        loadingIndicator.startAnimating()
     }
     
     open func hideLoader() {
-        loadingIndicator.isHidden = true
+//        loadingIndicator.isHidden = true
     }
     
     open func hideSeekToView() {
@@ -352,12 +352,12 @@ open class BMPlayerControlView: UIView {
             button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControlState())
             chooseDefinitionView.addSubview(button)
             button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControlEvents.touchUpInside)
-            button.snp.makeConstraints({ (make) in
-                make.top.equalTo(chooseDefinitionView.snp.top).offset(35 * i)
-                make.width.equalTo(50)
-                make.height.equalTo(25)
-                make.centerX.equalTo(chooseDefinitionView)
-            })
+//            button.snp.makeConstraints({ (make) in
+//                make.top.equalTo(chooseDefinitionView.snp.top).offset(35 * i)
+//                make.width.equalTo(50)
+//                make.height.equalTo(25)
+//                make.centerX.equalTo(chooseDefinitionView)
+//            })
             
             if resource.definitions.count == 1 {
                 button.isEnabled = false
@@ -445,10 +445,10 @@ open class BMPlayerControlView: UIView {
     }
     
     @objc fileprivate func onDefinitionSelected(_ button:UIButton) {
-        let height = isSelectDefinitionViewOpened ? 35 : resource!.definitions.count * 40
-        chooseDefinitionView.snp.updateConstraints { (make) in
-            make.height.equalTo(height)
-        }
+//        let height = isSelectDefinitionViewOpened ? 35 : resource!.definitions.count * 40
+//        chooseDefinitionView.snp.updateConstraints { (make) in
+//            make.height.equalTo(height)
+//        }
         
         UIView.animate(withDuration: 0.3, animations: {
             self.layoutIfNeeded()
@@ -575,10 +575,10 @@ open class BMPlayerControlView: UIView {
         fullscreenButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_portialscreen"), for: .selected)
         fullscreenButton.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
         
-        mainMaskView.addSubview(loadingIndicator)
+//        mainMaskView.addSubview(loadingIndicator)
         
-        loadingIndicator.type  = BMPlayerConf.loaderType
-        loadingIndicator.color = BMPlayerConf.tintColor
+//        loadingIndicator.type  = BMPlayerConf.loaderType
+//        loadingIndicator.color = BMPlayerConf.tintColor
         
         // View to show when slide to seek
         addSubview(seekToView)
@@ -613,142 +613,142 @@ open class BMPlayerControlView: UIView {
     }
     
     func addSnapKitConstraint() {
-        // Main mask view
-        mainMaskView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
-        }
-        
-        maskImageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(mainMaskView)
-        }
-        
-        topMaskView.snp.makeConstraints { (make) in
-            make.top.left.right.equalTo(mainMaskView)
-        }
-        
-        topWrapperView.snp.makeConstraints { (make) in
-            make.height.equalTo(50)
-            
-            if #available(iOS 11.0, *) {
-                make.top.left.right.equalTo(topMaskView.safeAreaLayoutGuide)
-                make.bottom.equalToSuperview()
-            } else {
-                make.top.equalToSuperview().offset(15)
-                make.bottom.left.right.equalToSuperview()
-            }
-        }
-        
-        bottomMaskView.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalTo(mainMaskView)
-        }
-        
-        bottomWrapperView.snp.makeConstraints { (make) in
-            make.height.equalTo(50)
-            
-            if #available(iOS 11.0, *) {
-                make.bottom.left.right.equalTo(bottomMaskView.safeAreaLayoutGuide)
-                make.top.equalToSuperview()
-            } else {
-                make.edges.equalToSuperview()
-            }
-        }
-        
-        // Top views
-        backButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(50)
-            make.left.bottom.equalToSuperview()
-        }
-        
-        titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(backButton.snp.right)
-            make.centerY.equalTo(backButton)
-        }
-        
-        chooseDefinitionView.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(titleLabel.snp.top).offset(-4)
-            make.width.equalTo(60)
-            make.height.equalTo(30)
-        }
-        
-        // Bottom views
-        playButton.snp.makeConstraints { (make) in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.left.bottom.equalToSuperview()
-        }
-        
-        currentTimeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(playButton.snp.right)
-            make.centerY.equalTo(playButton)
-            make.width.equalTo(40)
-        }
-        
-        timeSlider.snp.makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(currentTimeLabel.snp.right).offset(10).priority(750)
-            make.height.equalTo(30)
-        }
-        
-        progressView.snp.makeConstraints { (make) in
-            make.centerY.left.right.equalTo(timeSlider)
-            make.height.equalTo(2)
-        }
-        
-        totalTimeLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(timeSlider.snp.right).offset(5)
-            make.width.equalTo(40)
-        }
-        
-        fullscreenButton.snp.makeConstraints { (make) in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(totalTimeLabel.snp.right)
-            make.right.equalToSuperview()
-        }
-        
-        loadingIndicator.snp.makeConstraints { (make) in
-            make.center.equalTo(mainMaskView)
-        }
-        
-        // View to show when slide to seek
-        seekToView.snp.makeConstraints { (make) in
-            make.center.equalTo(self.snp.center)
-            make.width.equalTo(100)
-            make.height.equalTo(40)
-        }
-        
-        seekToViewImage.snp.makeConstraints { (make) in
-            make.left.equalTo(seekToView.snp.left).offset(15)
-            make.centerY.equalTo(seekToView.snp.centerY)
-            make.height.equalTo(15)
-            make.width.equalTo(25)
-        }
-        
-        seekToLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(seekToViewImage.snp.right).offset(10)
-            make.centerY.equalTo(seekToView.snp.centerY)
-        }
-        
-        replayButton.snp.makeConstraints { (make) in
-            make.center.equalTo(mainMaskView)
-            make.width.height.equalTo(50)
-        }
-        
-        subtitleBackView.snp.makeConstraints {
-            $0.bottom.equalTo(snp.bottom).offset(-5)
-            $0.centerX.equalTo(snp.centerX)
-            $0.width.lessThanOrEqualTo(snp.width).offset(-10).priority(750)
-        }
-        
-        subtitleLabel.snp.makeConstraints {
-            $0.left.equalTo(subtitleBackView.snp.left).offset(10)
-            $0.right.equalTo(subtitleBackView.snp.right).offset(-10)
-            $0.top.equalTo(subtitleBackView.snp.top).offset(2)
-            $0.bottom.equalTo(subtitleBackView.snp.bottom).offset(-2)
-        }
+//        // Main mask view
+//        mainMaskView.snp.makeConstraints { (make) in
+//            make.edges.equalTo(self)
+//        }
+//
+//        maskImageView.snp.makeConstraints { (make) in
+//            make.edges.equalTo(mainMaskView)
+//        }
+//
+//        topMaskView.snp.makeConstraints { (make) in
+//            make.top.left.right.equalTo(mainMaskView)
+//        }
+//
+//        topWrapperView.snp.makeConstraints { (make) in
+//            make.height.equalTo(50)
+//
+//            if #available(iOS 11.0, *) {
+//                make.top.left.right.equalTo(topMaskView.safeAreaLayoutGuide)
+//                make.bottom.equalToSuperview()
+//            } else {
+//                make.top.equalToSuperview().offset(15)
+//                make.bottom.left.right.equalToSuperview()
+//            }
+//        }
+//
+//        bottomMaskView.snp.makeConstraints { (make) in
+//            make.bottom.left.right.equalTo(mainMaskView)
+//        }
+//
+//        bottomWrapperView.snp.makeConstraints { (make) in
+//            make.height.equalTo(50)
+//
+//            if #available(iOS 11.0, *) {
+//                make.bottom.left.right.equalTo(bottomMaskView.safeAreaLayoutGuide)
+//                make.top.equalToSuperview()
+//            } else {
+//                make.edges.equalToSuperview()
+//            }
+//        }
+//
+//        // Top views
+//        backButton.snp.makeConstraints { (make) in
+//            make.width.height.equalTo(50)
+//            make.left.bottom.equalToSuperview()
+//        }
+//
+//        titleLabel.snp.makeConstraints { (make) in
+//            make.left.equalTo(backButton.snp.right)
+//            make.centerY.equalTo(backButton)
+//        }
+//
+//        chooseDefinitionView.snp.makeConstraints { (make) in
+//            make.right.equalToSuperview().offset(-20)
+//            make.top.equalTo(titleLabel.snp.top).offset(-4)
+//            make.width.equalTo(60)
+//            make.height.equalTo(30)
+//        }
+//
+//        // Bottom views
+//        playButton.snp.makeConstraints { (make) in
+//            make.width.equalTo(50)
+//            make.height.equalTo(50)
+//            make.left.bottom.equalToSuperview()
+//        }
+//
+//        currentTimeLabel.snp.makeConstraints { (make) in
+//            make.left.equalTo(playButton.snp.right)
+//            make.centerY.equalTo(playButton)
+//            make.width.equalTo(40)
+//        }
+//
+//        timeSlider.snp.makeConstraints { (make) in
+//            make.centerY.equalTo(currentTimeLabel)
+//            make.left.equalTo(currentTimeLabel.snp.right).offset(10).priority(750)
+//            make.height.equalTo(30)
+//        }
+//
+//        progressView.snp.makeConstraints { (make) in
+//            make.centerY.left.right.equalTo(timeSlider)
+//            make.height.equalTo(2)
+//        }
+//
+//        totalTimeLabel.snp.makeConstraints { (make) in
+//            make.centerY.equalTo(currentTimeLabel)
+//            make.left.equalTo(timeSlider.snp.right).offset(5)
+//            make.width.equalTo(40)
+//        }
+//
+//        fullscreenButton.snp.makeConstraints { (make) in
+//            make.width.equalTo(50)
+//            make.height.equalTo(50)
+//            make.centerY.equalTo(currentTimeLabel)
+//            make.left.equalTo(totalTimeLabel.snp.right)
+//            make.right.equalToSuperview()
+//        }
+//
+////        loadingIndicator.snp.makeConstraints { (make) in
+////            make.center.equalTo(mainMaskView)
+////        }
+//
+//        // View to show when slide to seek
+//        seekToView.snp.makeConstraints { (make) in
+//            make.center.equalTo(self.snp.center)
+//            make.width.equalTo(100)
+//            make.height.equalTo(40)
+//        }
+//
+//        seekToViewImage.snp.makeConstraints { (make) in
+//            make.left.equalTo(seekToView.snp.left).offset(15)
+//            make.centerY.equalTo(seekToView.snp.centerY)
+//            make.height.equalTo(15)
+//            make.width.equalTo(25)
+//        }
+//
+//        seekToLabel.snp.makeConstraints { (make) in
+//            make.left.equalTo(seekToViewImage.snp.right).offset(10)
+//            make.centerY.equalTo(seekToView.snp.centerY)
+//        }
+//
+//        replayButton.snp.makeConstraints { (make) in
+//            make.center.equalTo(mainMaskView)
+//            make.width.height.equalTo(50)
+//        }
+//
+//        subtitleBackView.snp.makeConstraints {
+//            $0.bottom.equalTo(snp.bottom).offset(-5)
+//            $0.centerX.equalTo(snp.centerX)
+//            $0.width.lessThanOrEqualTo(snp.width).offset(-10).priority(750)
+//        }
+//
+//        subtitleLabel.snp.makeConstraints {
+//            $0.left.equalTo(subtitleBackView.snp.left).offset(10)
+//            $0.right.equalTo(subtitleBackView.snp.right).offset(-10)
+//            $0.top.equalTo(subtitleBackView.snp.top).offset(2)
+//            $0.bottom.equalTo(subtitleBackView.snp.bottom).offset(-2)
+//        }
     }
     
     fileprivate func BMImageResourcePath(_ fileName: String) -> UIImage? {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SnapKit
+//import SnapKit
 import MediaPlayer
 
 /// BMPlayerDelegate to obserbe player state
@@ -392,9 +392,9 @@ open class BMPlayer: UIView {
         controlView.updateUI(isFullScreen)
         controlView.delegate = self
         controlView.player   = self
-        controlView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
-        }
+//        controlView.snp.makeConstraints { (make) in
+//            make.edges.equalTo(self)
+//        }
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
         self.addGestureRecognizer(panGesture)
@@ -417,9 +417,9 @@ open class BMPlayer: UIView {
         playerLayer = BMPlayerLayerView()
         playerLayer!.videoGravity = videoGravity
         insertSubview(playerLayer!, at: 0)
-        playerLayer!.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
-        }
+//        playerLayer!.snp.makeConstraints { (make) in
+//            make.edges.equalTo(self)
+//        }
         playerLayer!.delegate = self
         controlView.showLoader()
         self.layoutIfNeeded()

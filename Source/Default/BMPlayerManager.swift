@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-import NVActivityIndicatorView
+//import NVActivityIndicatorView
 
 public let BMPlayerConf = BMPlayerManager.shared
 
@@ -26,7 +26,7 @@ open class BMPlayerManager {
     open var tintColor = UIColor.white
     
     /// Loader
-    open var loaderType = NVActivityIndicatorType.ballRotateChase
+//    open var loaderType = NVActivityIndicatorType.ballRotateChase
     
     /// should auto play
     open var shouldAutoPlay = true
