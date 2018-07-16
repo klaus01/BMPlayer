@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import VIMediaCache
+//import VIMediaCache
 import AVFoundation
 
 //import NVActivityIndicatorView

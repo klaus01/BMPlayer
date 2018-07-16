@@ -16,3 +16,7 @@ FOUNDATION_EXPORT const unsigned char BMPlayerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <BMPlayer/PublicHeader.h>
 
+#import "VIResourceLoaderManager.h"
+#import "VICacheManager.h"
+#import "VIMediaDownloader.h"
+#import "VIContentInfo.h"
