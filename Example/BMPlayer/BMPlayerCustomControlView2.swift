@@ -20,7 +20,7 @@ class BMPlayerCustomControlView2: BMPlayerControlView {
     override func customizeUIComponents() {
         // just make the view hidden
         topMaskView.isHidden = true
-        chooseDefitionView.isHidden = true
+//        chooseDefitionView.isHidden = true
         
         // or remove from superview
         playButton.removeFromSuperview()
@@ -31,33 +31,33 @@ class BMPlayerCustomControlView2: BMPlayerControlView {
         fullscreenButton.removeFromSuperview()
         
         // If needs to change position remake the constraint
-        progressView.snp.remakeConstraints { (make) in
-            make.bottom.left.right.equalTo(bottomMaskView)
-            make.height.equalTo(2)
-        }
+//        progressView.snp.remakeConstraints { (make) in
+//            make.bottom.left.right.equalTo(bottomMaskView)
+//            make.height.equalTo(2)
+//        }
         
         // Add new items and constraint
         bottomMaskView.addSubview(playTimeUIProgressView)
-        playTimeUIProgressView.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalTo(bottomMaskView)
-            make.height.equalTo(2)
-        }
+//        playTimeUIProgressView.snp.makeConstraints { (make) in
+//            make.bottom.left.right.equalTo(bottomMaskView)
+//            make.height.equalTo(2)
+//        }
         
         playTimeUIProgressView.tintColor      = UIColor.red
         playTimeUIProgressView.trackTintColor = UIColor.clear
 
         addSubview(playingStateLabel)
-        playingStateLabel.snp.makeConstraints {
-            $0.left.equalTo(self).offset(10)
-            $0.bottom.equalTo(self).offset(-10)
-        }
+//        playingStateLabel.snp.makeConstraints {
+//            $0.left.equalTo(self).offset(10)
+//            $0.bottom.equalTo(self).offset(-10)
+//        }
         playingStateLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         playingStateLabel.textColor = UIColor.white
     }
     
     override func updateUI(_ isForFullScreen: Bool) {
         topMaskView.isHidden = true
-        chooseDefitionView.isHidden = true
+//        chooseDefitionView.isHidden = true
     }
     
     override func playTimeDidChange(currentTime: TimeInterval, totalTime: TimeInterval) {

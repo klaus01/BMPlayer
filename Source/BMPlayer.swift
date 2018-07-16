@@ -392,6 +392,8 @@ open class BMPlayer: UIView {
         controlView.updateUI(isFullScreen)
         controlView.delegate = self
         controlView.player   = self
+        controlView.frame = bounds
+        controlView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //        controlView.snp.makeConstraints { (make) in
 //            make.edges.equalTo(self)
 //        }
@@ -417,6 +419,8 @@ open class BMPlayer: UIView {
         playerLayer = BMPlayerLayerView()
         playerLayer!.videoGravity = videoGravity
         insertSubview(playerLayer!, at: 0)
+        playerLayer!.frame = bounds
+        playerLayer!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //        playerLayer!.snp.makeConstraints { (make) in
 //            make.edges.equalTo(self)
 //        }

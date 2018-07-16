@@ -36,10 +36,10 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         playbackRateButton.addTarget(self, action: #selector(onPlaybackRateButtonPressed), for: .touchUpInside)
         playbackRateButton.titleLabel?.font   = UIFont.systemFont(ofSize: 12)
         playbackRateButton.isHidden = true
-        playbackRateButton.snp.makeConstraints {
-            $0.right.equalTo(chooseDefitionView.snp.left).offset(-5)
-            $0.centerY.equalTo(chooseDefitionView)
-        }
+//        playbackRateButton.snp.makeConstraints {
+//            $0.right.equalTo(chooseDefitionView.snp.left).offset(-5)
+//            $0.centerY.equalTo(chooseDefitionView)
+//        }
         
         topMaskView.addSubview(rotateButton)
         rotateButton.layer.cornerRadius = 2
@@ -50,10 +50,10 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         rotateButton.addTarget(self, action: #selector(onRotateButtonPressed), for: .touchUpInside)
         rotateButton.titleLabel?.font   = UIFont.systemFont(ofSize: 12)
         rotateButton.isHidden = true
-        rotateButton.snp.makeConstraints {
-            $0.right.equalTo(playbackRateButton.snp.left).offset(-5)
-            $0.centerY.equalTo(chooseDefitionView)
-        }
+//        rotateButton.snp.makeConstraints {
+//            $0.right.equalTo(playbackRateButton.snp.left).offset(-5)
+//            $0.centerY.equalTo(chooseDefitionView)
+//        }
     }
     
     
@@ -72,17 +72,17 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         UIApplication.shared.setStatusBarHidden(!isShow, with: .fade)
         
         UIView.animate(withDuration: 0.24, animations: {
-            self.topMaskView.snp.remakeConstraints {
-                $0.top.equalTo(self.mainMaskView).offset(isShow ? 0 : -65)
-                $0.left.right.equalTo(self.mainMaskView)
-                $0.height.equalTo(65)
-            }
-            
-            self.bottomMaskView.snp.remakeConstraints {
-                $0.bottom.equalTo(self.mainMaskView).offset(isShow ? 0 : 50)
-                $0.left.right.equalTo(self.mainMaskView)
-                $0.height.equalTo(50)
-            }
+//            self.topMaskView.snp.remakeConstraints {
+//                $0.top.equalTo(self.mainMaskView).offset(isShow ? 0 : -65)
+//                $0.left.right.equalTo(self.mainMaskView)
+//                $0.height.equalTo(65)
+//            }
+//            
+//            self.bottomMaskView.snp.remakeConstraints {
+//                $0.bottom.equalTo(self.mainMaskView).offset(isShow ? 0 : 50)
+//                $0.left.right.equalTo(self.mainMaskView)
+//                $0.height.equalTo(50)
+//            }
             self.layoutIfNeeded()
         }) { (_) in
             self.autoFadeOutControlViewWithAnimation()
